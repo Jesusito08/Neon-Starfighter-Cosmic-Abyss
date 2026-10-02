@@ -19,6 +19,15 @@
   <meta name="twitter:description" content="Pilotea tu nave por un abismo cósmico neón, esquiva oleadas de enemigos y vence al jefe final en este arcade shooter gratis para navegador.">
   <meta name="twitter:image" content="https://jesusito08.github.io/Neon-Starfighter-Cosmic-Abyss/preview.png">
 
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#030308">
+  <link rel="icon" href="./icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Starfighter">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -938,6 +947,13 @@
     window.addEventListener('DOMContentLoaded', () => {
         new GameEngine();
     });
+
+    // PWA: registra el service worker para instalación y soporte offline
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => console.warn('SW registration failed:', err));
+      });
+    }
   </script>
 </body>
 </html>
